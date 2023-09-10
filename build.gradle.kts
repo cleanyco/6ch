@@ -1,3 +1,5 @@
+import kotlin.reflect.jvm.internal.impl.resolve.calls.inference.CapturedType
+
 plugins {
     java
     id("org.springframework.boot") version "3.1.3"
@@ -34,3 +36,10 @@ dependencies {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+//tasks.register("setEnvironmentVariables") {
+//    doLast {
+////        project.properties["database.url"] = "jdbc:postgresql://localhost:5432/s6ch"
+////        project.properties["api.key"] =
+//    }
+//}
