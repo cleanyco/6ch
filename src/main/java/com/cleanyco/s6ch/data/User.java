@@ -3,7 +3,6 @@ package com.cleanyco.s6ch.data;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NonNull;
 
 import java.sql.Timestamp;
