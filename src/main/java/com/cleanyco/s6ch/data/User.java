@@ -19,7 +19,7 @@ public class User {
     String username;
     @Column(name = "password")
     String password;
-    @Column(name = "created_at")
+    @Column(name = "created_at", insertable = false)
     Timestamp createdAt;
     @Column(name = "deleted_at")
     Timestamp deletedAt;
