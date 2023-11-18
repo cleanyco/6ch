@@ -11,17 +11,13 @@ import java.sql.Timestamp;
 
 @Entity
 @Data
-@Table(name = "users")
 public class User {
     @Id
     @NonNull
-    @Column(name = "username")
     String username;
-    @Column(name = "password")
     String password;
-    @Column(name = "created_at", insertable = false)
+    @Column(insertable = false)
     Timestamp createdAt;
-    @Column(name = "deleted_at")
     Timestamp deletedAt;
 
     public User() {
