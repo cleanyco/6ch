@@ -1,4 +1,4 @@
-package com.cleanyco.s6ch.data;
+package com.cleanyco.s6ch.model;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

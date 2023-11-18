@@ -1,15 +1,13 @@
 package com.cleanyco.s6ch.controller;
 
-import com.cleanyco.s6ch.data.User;
-import com.cleanyco.s6ch.data.UserRepository;
+import com.cleanyco.s6ch.model.User;
+import com.cleanyco.s6ch.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.net.http.HttpResponse;
 
 @RestController
 public class UserController {

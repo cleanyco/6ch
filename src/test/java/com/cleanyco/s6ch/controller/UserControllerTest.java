@@ -1,7 +1,7 @@
 package com.cleanyco.s6ch.controller;
 
-import com.cleanyco.s6ch.data.User;
-import com.cleanyco.s6ch.data.UserRepository;
+import com.cleanyco.s6ch.model.User;
+import com.cleanyco.s6ch.model.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
