@@ -1,7 +1,7 @@
 package com.cleanyco.s6ch.controller;
 
 import com.cleanyco.s6ch.model.User;
-import com.cleanyco.s6ch.model.UserRepository;
+import com.cleanyco.s6ch.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
