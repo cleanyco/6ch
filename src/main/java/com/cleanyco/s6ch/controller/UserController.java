@@ -1,13 +1,12 @@
 package com.cleanyco.s6ch.controller;
 
 import com.cleanyco.s6ch.model.User;
+import com.cleanyco.s6ch.payload.UserDTO;
 import com.cleanyco.s6ch.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -19,12 +18,10 @@ public class UserController {
     }
 
     @GetMapping("/users/{username}")
-    public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
-        Optional<User> user = userService.getUserByUsername(username);
-
-        return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+    public ResponseEntity<UserDTO> getUserByUsername(@PathVariable String username) {
+        return userService.getUserByUsername(username)
+                .map(user -> new ResponseEntity<>(userService.mapToDTO(user), HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.BAD_REQUEST));
-
     }
 
     //TODO add hashing!
