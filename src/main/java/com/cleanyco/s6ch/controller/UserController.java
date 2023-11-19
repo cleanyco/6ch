@@ -1,37 +1,43 @@
 package com.cleanyco.s6ch.controller;
 
 import com.cleanyco.s6ch.model.User;
-import com.cleanyco.s6ch.repository.UserRepository;
+import com.cleanyco.s6ch.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 public class UserController {
-    UserRepository userRepository;
+    UserService userService;
 
     @Autowired
-    public UserController(UserRepository repository) {
-        this.userRepository = repository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
+
+    @GetMapping("/users/{username}")
+    public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
+        Optional<User> user = userService.getUserByUsername(username);
+
+        return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.BAD_REQUEST));
+
+    }
+
     //TODO add hashing!
     //FIXME "created_at" field is not set
     @PostMapping("/signup")
     public ResponseEntity<String> signUp(@RequestBody User user) {
-        boolean isExists = isUserExists(user.getUsername());
+        boolean isExists = userService.isUserExists(user.getUsername());
 
         if (!isExists) {
-            userRepository.save(user);
+            userService.saveUser(user);
             return new ResponseEntity<>("User was successfully created", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("User already exists!d", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("User already exists!", HttpStatus.BAD_REQUEST);
         }
-    }
-
-    private boolean isUserExists(String username) {
-        return userRepository.existsById(username);
     }
 }
