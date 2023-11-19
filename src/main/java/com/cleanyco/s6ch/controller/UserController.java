@@ -28,14 +28,13 @@ public class UserController {
     }
 
     //TODO add hashing!
-    //FIXME "created_at" field is not set
     @PostMapping("/signup")
     public ResponseEntity<String> signUp(@RequestBody User user) {
         boolean isExists = userService.isUserExists(user.getUsername());
 
         if (!isExists) {
             userService.saveUser(user);
-            return new ResponseEntity<>("User was successfully created", HttpStatus.OK);
+            return new ResponseEntity<>("User was successfully created!", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("User already exists!", HttpStatus.BAD_REQUEST);
         }

@@ -2,7 +2,6 @@ package com.cleanyco.s6ch.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NonNull;
 
 import java.util.Date;
 
@@ -11,7 +10,9 @@ import java.util.Date;
 @Table(name = "users")
 public class User {
     @Id
-    @NonNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer userId;
+    @Column(unique = true, nullable = false)
     String username;
     String password;
     @Column(updatable = false)
