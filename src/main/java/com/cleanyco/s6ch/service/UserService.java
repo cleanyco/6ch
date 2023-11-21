@@ -17,10 +17,6 @@ public class UserService {
         this.userRepository = repository;
     }
 
-    public boolean isUserExists(String username) {
-        return userRepository.existsById(username);
-    }
-
     public Optional<User> getUserByUsername(String username) {
         return userRepository.getUserByUsername(username);
     }

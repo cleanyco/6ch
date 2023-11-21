@@ -32,8 +32,8 @@ public class User {
         updatedAt = new Date();
     }
 
-    @PreRemove
-    private void onDelete() {
-        //TODO
-    }
+//    @PreRemove
+//    private void onDelete() {
+//        //TODO
+//    }
 }

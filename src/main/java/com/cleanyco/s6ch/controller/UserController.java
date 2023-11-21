@@ -1,5 +1,6 @@
 package com.cleanyco.s6ch.controller;
 
+import com.cleanyco.s6ch.controller.exceptions.UserAlreadyExistsException;
 import com.cleanyco.s6ch.model.User;
 import com.cleanyco.s6ch.payload.UserDTO;
 import com.cleanyco.s6ch.service.UserService;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -26,14 +29,13 @@ public class UserController {
 
     //TODO add hashing!
     @PostMapping("/signup")
-    public ResponseEntity<String> signUp(@RequestBody User user) {
-        boolean isExists = userService.isUserExists(user.getUsername());
+    public void signUp(@RequestBody User user) {
+        Optional<User> existingUser = userService.getUserByUsername(user.getUsername());
 
-        if (!isExists) {
+        if (existingUser.isEmpty()) {
             userService.saveUser(user);
-            return new ResponseEntity<>("User was successfully created!", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("User already exists!", HttpStatus.BAD_REQUEST);
+            throw new UserAlreadyExistsException();
         }
     }
 }
