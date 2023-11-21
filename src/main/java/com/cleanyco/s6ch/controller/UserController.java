@@ -27,7 +27,6 @@ public class UserController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 
-    //TODO add hashing!
     @PostMapping("/signup")
     public void signUp(@RequestBody User user) {
         Optional<User> existingUser = userService.getUserByUsername(user.getUsername());
